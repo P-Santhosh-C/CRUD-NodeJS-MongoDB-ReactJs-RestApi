@@ -1,20 +1,19 @@
+"use strict";
 const mongoose = require("mongoose");
 
-const employeeSchema = mongoose.Schema({
-  _id: mongoose.Schema.Types.ObjectId,
-
+let employeeSchema = mongoose.Schema({
   firstName: {
     type: String,
     required: [true, "First Name is required"],
-    min: [3, "First Name Must be at least 3"],
-    max: 20,
+    minlength: [3, "First Name Must be at least 3"],
+    maxlength: 20,
   },
 
   Surname: {
     type: String,
     required: [true, "Surname is required"],
-    min: [3, "Surname Name Must be at least 3"],
-    max: 20,
+    minlength: [3, "Surname Name Must be at least 3"],
+    maxlength: 20,
   },
 
   email: {
@@ -39,19 +38,20 @@ const employeeSchema = mongoose.Schema({
   address: {
     type: String,
     required: [true, "Address is required"],
-    max: [50],
+    maxlength: [50],
   },
 
   dob: {
     type: Date,
-    default: Date.now,
     required: [true, "Date Of Birth is required"],
+    max: new Date(),
   },
 
   mobile: {
     type: String,
     required: [true, "Mobile is required"],
-    max: 18,
+    minlength: [10, "enter valid moblie number"],
+    maxlength: [12, "enter valid moblie number"],
   },
 
   skills: {
