@@ -15,7 +15,12 @@ mongoose
     useCreateIndex: true,
     useFindAndModify: false,
   })
-  .then(() => console.log("DB is connected"));
+  .then(() =>
+    app.listen(port, () => {
+      console.log("Server is Runing on " + port);
+    })
+  )
+  .catch((error) => console.log(error.message));
 
 app.use(express.json());
 
@@ -25,8 +30,4 @@ app.use("/employee", employeeRoutes);
 
 app.use((req, res) => {
   res.status(404).send({ url: req.originalUrl + " not found" });
-});
-
-app.listen(port, () => {
-  console.log("Server is Runing on " + port);
 });
